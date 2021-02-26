@@ -1,0 +1,519 @@
+---
+slug: simple-english
+title: Simple  English
+date: 2021-02-26
+author: wutali
+tags: []
+---
+
+
+```html
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.js"></script>
+    <style type="text/css">
+        body {
+            background: radial-gradient(ellipse at center, rgb(0 54 107) 0%, rgba(0, 0, 0, 1) 100%);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .container {
+            max-width: 998px;
+            margin: 0px auto;
+        }
+
+        /* 
+        ####################################
+           BASE STYLES 
+        ####################################### 
+        */
+        .fit-vids-style {
+            display: none;
+        }
+
+        .swiper-custom-next.swiper-button-disabled,
+        .swiper-custom-prev.swiper-button-disabled {
+            opacity: 0.2;
+
+        }
+
+        /* Zoom In on hover */
+        .vid-thumb {
+            overflow: hidden;
+            display: block;
+            width: auto;
+        }
+
+        .vid-thumb img {
+            display: block;
+        }
+
+        .swiper-slide:hover .desc {
+            margin: 0px;
+            padding: 0px;
+            text-decoration: underline;
+        }
+
+        .vid-thumb img {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: .3s ease-in-out;
+            transition: .3s ease-in-out;
+        }
+
+        .vid-thumb:hover img {
+            -webkit-transform: scale(1.08);
+            transform: scale(1.08);
+        }
+
+        .vid-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .vid-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 
+        #####################
+        SWIPER STYLES
+        #######################
+        */
+        .swiper-container-videos .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+            position: relative;
+            top: 0px;
+        }
+
+        .swiper-container-videos .swiper-slide a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #1f2f3c;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .swiper-container-videos .swiper-slide a {
+                font-size: 11px;
+                line-height: 14px;
+            }
+        }
+
+        .swiper-container-videos .selected.swiper-slide a .desc {
+            color: #721e2e;
+            font-weight: bold;
+        }
+
+        .swiper-container-videos .selected {
+            border-bottom: 1px solid #c4c4c4;
+        }
+
+        /*  
+        slidesPerView: "auto" so the width of each slide set by CSS 
+        */
+        .swiper-container-videos .swiper-slide {
+            max-width: auto;
+            width: 36%;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+        }
+
+        .swiper-container-videos .swiper-slide a .desc {
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .swiper-container-videos .swiper-slide img {
+            height: auto;
+            width: 100%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #b4234c;
+        }
+
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+        }
+    </style>
+
+
+
+    <div class="container">
+        <container class="vid-main-wrapper clearfix">
+            <!-- THE YOUTUBE PLAYER -->
+            <div class="vid-container">
+                <iframe id="vid_frame" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="vid-iframe"></iframe>
+            </div>
+        </container>
+
+        <section id="extra wrapper" style="position: relative; padding-right: 32px; padding-left: 32px; background: #f6f6f6;">
+
+            <!-- CUSTOM ARROWS -->
+            <button title="Next" class="swiper-custom-next" style="position: absolute; padding: 10px 2px; right: 1px;top: 32%; z-index: 100;
+    display: inline-block;cursor: pointer;">
+                <svg style="position: relative; top: 1px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                    <g class="nc-icon-wrapper" fill="#111111">
+                        <polygon fill="#111111" points="4.9,15.7 3.4,14.3 9.7,8 3.4,1.7 4.9,0.3 12.6,8 "></polygon>
+                    </g>
+                </svg>
+            </button>
+            <button title="Prev" class="swiper-custom-prev" style="position: absolute; padding: 10px 2px; left: 2px; top: 35%; z-index: 100;
+    display: inline-block;cursor: pointer;font-size: 15px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                    <g class="nc-icon-wrapper" fill="#111111">
+                        <polygon fill="#111111" points="11.1,15.7 3.4,8 11.1,0.3 12.6,1.7 6.3,8 12.6,14.3 "></polygon>
+                    </g>
+                </svg>
+            </button>
+
+            <!-- Swiper -->
+            <nav class="swiper-container swiper-container-videos slider-produtos-destaque">
+                <ol class="swiper-wrapper" style="list-style-type: none; padding: 0px;">
+                        <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/164655886'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988903994_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 01</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/164655887'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988904139_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 02</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/164655889'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988904553_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 03</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645089'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988904754_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 04</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/eesvn/pe05'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988904869_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 05</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645091'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905088_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 06</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645092'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905169_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 07</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645093'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905224_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 08</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645094'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905329_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 09</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645096'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905373_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 10</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645099'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905900_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 11</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645098'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988905987_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 12</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645100'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988906063_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 13</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645101'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988906133_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 14</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645103'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988906184_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 15</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645104'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988906911_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 16</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645106'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988906978_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 17</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645114'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907033_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 18</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645113'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907077_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 19</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645108'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907147_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 20</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645109'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907655_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 21</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645119'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907763_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 22</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645121'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907815_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 23</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645110'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907872_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 24</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645111'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988907934_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 25</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645112'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988908484_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 26</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645115'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988908579_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 27</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645117'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988908762_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 28</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645118'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988908832_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 29</p>
+        </a>
+    </li>
+    <li class="swiper-slide">
+        <a class="vid-link" href="javascript:void();" onClick="document.getElementById('vid_frame').src='https://player.vimeo.com/video/166645120'">
+            <span class="vid-thumb">
+                <img src="https://i.vimeocdn.com/filter/overlay?src0=https%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F988908893_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png" />
+            </span>
+            <p class="desc">Pimsleur English Video Lesson 30</p>
+        </a>
+    </li>
+                </ol>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- If we need navigation buttons -->
+
+            </nav>
+
+        </section>
+            </div>
+
+    <script>
+        /* webflow only this section swiper pagination */
+        $(document).ready(function() {
+            /* add html by js (no way to add this HTML by webflow UI beacuse this is CMS list*/
+            var part1 = "<div class=swiper-pagination></div>";
+            //  var part2 = '<div class="swiper-button-prev"></div>';
+            //var part3 = '<div class="swiper-button-next"></div>';
+            // var swiperString = part1.concat(part2, part3);
+            $("#swiper-press").append(part1);
+        });
+
+        /* change active class when click */
+        $(".swiper-container-videos .swiper-wrapper .swiper-slide a").click(function() {
+            $(this)
+                .closest(".swiper-slide")
+                .addClass("selected")
+                .siblings()
+                .removeClass("selected");
+            mySwiper1.slideTo(mySwiper1.clickedIndex);
+        });
+
+        $(".swiper-container-videos .swiper-slide")
+            .first()
+            .addClass("selected");
+
+        /* 1 of 2 : SWIPER */
+        var mySwiper1 = new Swiper(".swiper-container-videos", {
+            // If loop true set photoswipe - counterEl: false
+            loop: false,
+            /* slidesPerView || auto - if you want to set width by css like flickity.js layout - in this case width:80% by CSS */
+            slidesPerView: "auto",
+            spaceBetween: 15,
+            centeredSlides: false,
+
+            // If we need pagination
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-custom-next",
+                prevEl: ".swiper-custom-prev"
+            },
+
+            keyboard: {
+                enabled: true,
+                onlyInViewport: true
+            }
+        });
+
+        /* This is what makes the videos responsive. You can either include this in a <script> tag in the markup, or better yet, include it in a separata JavaScript file.*/
+        $(function() {
+            //Look for all the videos inside this element and make them responsive
+           // $(".vid-container").fitVids();
+        });
+
+        /*JS FOR SCROLLING THE ROW OF THUMBNAILS*/
+
+        $(document).ready(function() {
+            $(".vid-link").each(function(index) {
+                $(this).on("click", function() {
+                    var current_index = index + 1;
+                    $(".vid-link .vid-thumb").removeClass("active");
+                    $(".vid-link:nth-child(" + current_index + ") .vid-thumb").addClass("active");
+                });
+                if (index === 0) {
+                    $(this).click();
+                }
+            });
+        });
+    </script>
+
+    
+```
